@@ -6,6 +6,7 @@
 package ch.keybridge.lib.cbrs.pal;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -77,24 +78,38 @@ public class RegistrationInformation implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (registrationInformationPK != null ? registrationInformationPK.hashCode() : 0);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.registrationInformationPK);
+        hash = 41 * hash + Objects.hashCode(this.registrationDate);
+        hash = 41 * hash + Objects.hashCode(this.licenseConditions);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RegistrationInformation)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        RegistrationInformation other = (RegistrationInformation) object;
-        if ((this.registrationInformationPK == null && other.registrationInformationPK != null) || (this.registrationInformationPK != null && !this.registrationInformationPK.equals(other.registrationInformationPK))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RegistrationInformation other = (RegistrationInformation) obj;
+        if (!Objects.equals(this.registrationDate, other.registrationDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseConditions, other.licenseConditions)) {
+            return false;
+        }
+        if (!Objects.equals(this.registrationInformationPK, other.registrationInformationPK)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "ch.keybridge.lib.cbrs.pal.RegistrationInformation[ registrationInformationPK=" + registrationInformationPK + " ]";

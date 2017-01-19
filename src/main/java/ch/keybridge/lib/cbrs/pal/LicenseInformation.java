@@ -6,6 +6,7 @@
 package ch.keybridge.lib.cbrs.pal;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -125,23 +126,54 @@ public class LicenseInformation implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.licenseId);
+        hash = 19 * hash + Objects.hashCode(this.licenseDate);
+        hash = 19 * hash + Objects.hashCode(this.licenseExpiration);
+        hash = 19 * hash + Objects.hashCode(this.licenseAreaIdentifier);
+        hash = 19 * hash + Objects.hashCode(this.licenseAreaExtent);
+        hash = 19 * hash + Objects.hashCode(this.licenseFrequencyBlockId);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LicenseInformation)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        LicenseInformation other = (LicenseInformation) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LicenseInformation other = (LicenseInformation) obj;
+        if (!Objects.equals(this.licenseId, other.licenseId)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseDate, other.licenseDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseExpiration, other.licenseExpiration)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseAreaIdentifier, other.licenseAreaIdentifier)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseAreaExtent, other.licenseAreaExtent)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseFrequencyBlockId, other.licenseFrequencyBlockId)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

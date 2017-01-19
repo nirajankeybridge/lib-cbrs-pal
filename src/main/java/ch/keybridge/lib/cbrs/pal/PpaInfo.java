@@ -6,6 +6,7 @@
 package ch.keybridge.lib.cbrs.pal;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -77,23 +78,38 @@ public class PpaInfo implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (palId != null ? palId.hashCode() : 0);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.palId);
+        hash = 67 * hash + Objects.hashCode(this.ppaDate);
+        hash = 67 * hash + Objects.hashCode(this.ppaExpiration);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PpaInfo)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        PpaInfo other = (PpaInfo) object;
-        if ((this.palId == null && other.palId != null) || (this.palId != null && !this.palId.equals(other.palId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PpaInfo other = (PpaInfo) obj;
+        if (!Objects.equals(this.ppaDate, other.ppaDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.ppaExpiration, other.ppaExpiration)) {
+            return false;
+        }
+        if (!Objects.equals(this.palId, other.palId)) {
             return false;
         }
         return true;
     }
+
+
 
     @Override
     public String toString() {

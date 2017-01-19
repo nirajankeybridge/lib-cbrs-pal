@@ -6,6 +6,7 @@
 package ch.keybridge.lib.cbrs.pal;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -147,23 +148,54 @@ public class PalInfoRecord implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (palId != null ? palId.hashCode() : 0);
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.palId);
+        hash = 13 * hash + Objects.hashCode(this.licensee);
+        hash = 13 * hash + Objects.hashCode(this.userId);
+        hash = 13 * hash + Objects.hashCode(this.registrationInformationId);
+        hash = 13 * hash + Objects.hashCode(this.license);
+        hash = 13 * hash + Objects.hashCode(this.licenseStatus);
+        hash = 13 * hash + Objects.hashCode(this.channelAssignment);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PalInfoRecord)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        PalInfoRecord other = (PalInfoRecord) object;
-        if ((this.palId == null && other.palId != null) || (this.palId != null && !this.palId.equals(other.palId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PalInfoRecord other = (PalInfoRecord) obj;
+        if (!Objects.equals(this.licensee, other.licensee)) {
+            return false;
+        }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.registrationInformationId, other.registrationInformationId)) {
+            return false;
+        }
+        if (!Objects.equals(this.license, other.license)) {
+            return false;
+        }
+        if (!Objects.equals(this.licenseStatus, other.licenseStatus)) {
+            return false;
+        }
+        if (!Objects.equals(this.channelAssignment, other.channelAssignment)) {
+            return false;
+        }
+        if (!Objects.equals(this.palId, other.palId)) {
             return false;
         }
         return true;
     }
+
+
 
     @Override
     public String toString() {

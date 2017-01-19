@@ -56,7 +56,9 @@ public class RegistrationInformationPK implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.frn);
         return hash;
     }
 
@@ -80,6 +82,8 @@ public class RegistrationInformationPK implements Serializable {
         }
         return true;
     }
+
+
 
 
 
